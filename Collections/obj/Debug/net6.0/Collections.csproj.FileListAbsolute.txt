@@ -1,0 +1,30 @@
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\obj\Debug\net6.0\Collections.csproj.AssemblyReference.cache
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\obj\Debug\net6.0\Collections.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\obj\Debug\net6.0\Collections.AssemblyInfoInputs.cache
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\obj\Debug\net6.0\Collections.AssemblyInfo.cs
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\obj\Debug\net6.0\Collections.csproj.CoreCompileInputs.cache
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\bin\Debug\net6.0\Collections.exe
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\bin\Debug\net6.0\Collections.deps.json
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\bin\Debug\net6.0\Collections.runtimeconfig.json
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\bin\Debug\net6.0\Collections.dll
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\bin\Debug\net6.0\ref\Collections.dll
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\bin\Debug\net6.0\Collections.pdb
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\obj\Debug\net6.0\Collections.dll
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\obj\Debug\net6.0\ref\Collections.dll
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\obj\Debug\net6.0\Collections.pdb
+C:\Users\SD447822\OneDrive - SD Worx\Desktop\BackendTraining\Collections\Collections\obj\Debug\net6.0\Collections.genruntimeconfig.cache
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\bin\Debug\net6.0\Collections.exe
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\bin\Debug\net6.0\Collections.deps.json
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\bin\Debug\net6.0\Collections.runtimeconfig.json
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\bin\Debug\net6.0\Collections.dll
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\bin\Debug\net6.0\ref\Collections.dll
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\bin\Debug\net6.0\Collections.pdb
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\obj\Debug\net6.0\Collections.csproj.AssemblyReference.cache
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\obj\Debug\net6.0\Collections.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\obj\Debug\net6.0\Collections.AssemblyInfoInputs.cache
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\obj\Debug\net6.0\Collections.AssemblyInfo.cs
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\obj\Debug\net6.0\Collections.csproj.CoreCompileInputs.cache
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\obj\Debug\net6.0\Collections.dll
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\obj\Debug\net6.0\ref\Collections.dll
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\obj\Debug\net6.0\Collections.pdb
+C:\Users\SD447822\Source\Repos\FawzaanJuhoor\BackEnd-Training-Projects\Collections\obj\Debug\net6.0\Collections.genruntimeconfig.cache
