@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 //ArrayList Class
@@ -149,9 +150,8 @@ public class ArrayList
 }
 
 
-public class Queue<T>
+public class Queue<T> : IEnumerable<T>
 {
-    //Private class to represent a node in the linked list.
     private class Node
     {
         public T Value { get; set; }
@@ -161,14 +161,6 @@ public class Queue<T>
     private Node front;
     private Node rear;
 
-    //Initializes an empty queue.
-    public Queue()
-    {
-        front = null;
-        rear = null;
-    }
-
-    //Retrieves the number of elements in the queue.
     public int Count
     {
         get
@@ -184,31 +176,26 @@ public class Queue<T>
         }
     }
 
-    //Checks if the queue is empty.
     public bool IsEmpty
     {
         get { return front == null; }
     }
 
-    //Adds an element to the rear of the queue.
     public void Enqueue(T element)
     {
         Node newNode = new Node { Value = element, Next = null };
 
         if (rear == null)
         {
-            // If the queue is empty, set both front and rear to the new node
             front = rear = newNode;
         }
         else
         {
-            // Otherwise, add the new node to the rear and update the rear
             rear.Next = newNode;
             rear = newNode;
         }
     }
 
-    //Removes and returns the element from the front of the queue.
     public T Dequeue()
     {
         if (IsEmpty)
@@ -221,19 +208,16 @@ public class Queue<T>
 
         if (front == rear)
         {
-            // If there is only one element, set both front and rear to null
             front = rear = null;
         }
         else
         {
-            // Otherwise, move the front to the next node
             front = front.Next;
         }
 
         return element;
     }
 
-    //Retrieves the element at the front of the queue without removing it.
     public T Peek()
     {
         if (IsEmpty)
@@ -245,7 +229,6 @@ public class Queue<T>
         return front.Value;
     }
 
-    //Prints the elements of the queue.
     public void Display()
     {
         Node current = front;
@@ -256,8 +239,54 @@ public class Queue<T>
         }
         Console.WriteLine();
     }
-}
 
+    // Implementation of IEnumerable<T>
+    public IEnumerator<T> GetEnumerator()
+    {
+        return new QueueEnumerator(front);
+    }
+
+    // Implementation of IEnumerable
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
+    // Nested Enumerator class
+    private class QueueEnumerator : IEnumerator<T>
+    {
+        private Node current;
+
+        public QueueEnumerator(Node front)
+        {
+            current = new Node { Next = front }; // Dummy node to simplify logic
+        }
+
+        public T Current => current.Value;
+
+        object IEnumerator.Current => Current;
+
+        public void Dispose()
+        {
+            // Dispose logic (if needed)
+        }
+
+        public bool MoveNext()
+        {
+            if (current.Next != null)
+            {
+                current = current.Next;
+                return true;
+            }
+            return false;
+        }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
 class ArrayListQueue
 {
     static void Main()
@@ -331,6 +360,20 @@ class ArrayListQueue
         myQueue.Enqueue(3);
         myQueue.Enqueue(4);
 
+        Console.WriteLine("Elements in the queue using IEnumerator:");
+        IEnumerator<int> enumerator = myQueue.GetEnumerator();
+        while (enumerator.MoveNext())
+        {
+            int element = enumerator.Current;
+            Console.WriteLine(element);
+        }
+
+        // Alternatively, you can use foreach
+        Console.WriteLine("\nElements in the queue using foreach:");
+        foreach (int element in myQueue)
+        {
+            Console.WriteLine(element);
+        }
         
         System.Console.WriteLine("Adding elements to queue");
         myQueue.Display();  // Output: 1 2 3 4
@@ -341,7 +384,7 @@ class ArrayListQueue
         Console.WriteLine("Dequeued element: " + dequeuedElement);  // Output: 1
         Console.WriteLine("Size of the queue after dequeue: " + myQueue.Count);  // Output: 3
 
-        
+
         int peekedElement = myQueue.Peek();
         Console.WriteLine("Peeked element: " + peekedElement);  // Output: 2
 
