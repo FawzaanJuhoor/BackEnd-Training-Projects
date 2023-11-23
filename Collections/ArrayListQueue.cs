@@ -266,11 +266,7 @@ public class Queue<T> : IEnumerable<T>
 
         object IEnumerator.Current => Current;
 
-        public void Dispose()
-        {
-            // Dispose logic (if needed)
-        }
-
+       
         public bool MoveNext()
         {
             if (current.Next != null)
@@ -279,11 +275,6 @@ public class Queue<T> : IEnumerable<T>
                 return true;
             }
             return false;
-        }
-
-        public void Reset()
-        {
-            throw new NotImplementedException();
         }
     }
 }
