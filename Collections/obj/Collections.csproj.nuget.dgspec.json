@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SD447822\\Source\\Repos\\FawzaanJuhoor\\BackEnd-Training-Projects\\Collections\\Collections.csproj": {}
+    "C:\\Users\\SD447822\\source\\repos\\FawzaanJuhoor\\BackEnd-Training-Projects\\Collections\\Collections.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SD447822\\Source\\Repos\\FawzaanJuhoor\\BackEnd-Training-Projects\\Collections\\Collections.csproj": {
+    "C:\\Users\\SD447822\\source\\repos\\FawzaanJuhoor\\BackEnd-Training-Projects\\Collections\\Collections.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SD447822\\Source\\Repos\\FawzaanJuhoor\\BackEnd-Training-Projects\\Collections\\Collections.csproj",
+        "projectUniqueName": "C:\\Users\\SD447822\\source\\repos\\FawzaanJuhoor\\BackEnd-Training-Projects\\Collections\\Collections.csproj",
         "projectName": "Collections",
-        "projectPath": "C:\\Users\\SD447822\\Source\\Repos\\FawzaanJuhoor\\BackEnd-Training-Projects\\Collections\\Collections.csproj",
+        "projectPath": "C:\\Users\\SD447822\\source\\repos\\FawzaanJuhoor\\BackEnd-Training-Projects\\Collections\\Collections.csproj",
         "packagesPath": "C:\\Users\\SD447822\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SD447822\\Source\\Repos\\FawzaanJuhoor\\BackEnd-Training-Projects\\Collections\\obj\\",
+        "outputPath": "C:\\Users\\SD447822\\source\\repos\\FawzaanJuhoor\\BackEnd-Training-Projects\\Collections\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

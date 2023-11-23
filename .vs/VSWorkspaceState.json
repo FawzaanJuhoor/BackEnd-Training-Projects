@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Collections"
+    "\\Collections",
+    "\\Collections\\bin",
+    "\\Collections\\obj"
   ],
-  "SelectedNode": "\\Collections",
   "PreviewInSolutionExplorer": false
 }
