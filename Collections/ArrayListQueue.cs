@@ -1,106 +1,37 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-
-//ArrayList Class
-class ArrayListGeneric<T>
+ 
+public class ArrayList : IEnumerable<object>, IList<object>, ICollection<object>
 {
-    private List<T> data;
-
-    //Initializes a new ArrayListGeneric.
-    public ArrayListGeneric()
-    {
-        data = new List<T>();
-    }
-
-    //Retrieves the number of elements in the ArrayListGeneric.
-    public int Size
-    {
-        get { return data.Count; }
-    }
-
-    //Checks if the ArrayListGeneric is empty.
-    public bool IsEmpty
-    {
-        get { return data.Count == 0; }
-    }
-
-    //Adds an element to the ArrayListGeneric.
-    public void Add(T element)
-    {
-        data.Add(element);
-    }
-
-    //Removes the specified element from the ArrayListGeneric.
-    public void Remove(T element)
-    {
-        if (data.Contains(element))
-        {
-            data.Remove(element);
-        }
-        else
-        {
-            Console.WriteLine($"{element} not found in the list.");
-        }
-    }
-
-    //Retrieves the element at the specified index.
-    public T Get(int index)
-    {
-        if (index >= 0 && index < data.Count)
-        {
-            return data[index];
-        }
-        else
-        {
-            Console.WriteLine("Index out of bounds.");
-            return default(T);
-        }
-    }
-
-    //Prints the elements of the ArrayListGeneric.
-    public void Display()
-    {
-        Console.WriteLine(string.Join(", ", data));
-    }
-}
-
-
-
-
-
-public class ArrayList
-{
-    private object[] data;    // Array to store elements
-    private int count;         // Number of elements currently in the array
-    private int capacity = 10; // Initial capacity of the array
-
+    private object[] data;
+    private int count;
+    private int capacity = 10;
+ 
     public ArrayList()
     {
-        // Constructor: Initializes the ArrayList with an array of initial capacity and count set to 0.
         data = new object[capacity];
         count = 0;
     }
-
+ 
     public int Count
     {
         get { return count; }
     }
-
+ 
     public bool IsEmpty
     {
         get { return count == 0; }
     }
-
+ 
     public void Add(object element)
     {
-        EnsureCapacity();   // Ensure enough capacity before adding a new element
-        data[count++] = element;  // Add the element to the end of the array and increment count
+        EnsureCapacity();
+        data[count++] = element;
     }
-
+ 
     public object Get(int index)
     {
-        // Retrieve the element at the specified index
         if (index < 0 || index >= count)
         {
             Console.WriteLine("Index out of range.");
@@ -108,18 +39,15 @@ public class ArrayList
         }
         return data[index];
     }
-
+ 
     public void Remove(object element)
     {
         int index = Array.IndexOf(data, element, 0, count);
-
+ 
         if (index >= 0)
         {
-            // Element found: Shift elements to fill the gap
             Array.Copy(data, index + 1, data, index, count - index - 1);
             count--;
-
-            // Set the last element to null
             data[count] = null;
         }
         else
@@ -127,30 +55,124 @@ public class ArrayList
             Console.WriteLine("Element not found in the ArrayList.");
         }
     }
-
+ 
     private void EnsureCapacity()
     {
         if (count == data.Length)
         {
-            // If the array is full, double its capacity
             int newCapacity = data.Length * 2;
-            Array.Resize(ref data, newCapacity);    // Modifies the array by resizing it
+            Array.Resize(ref data, newCapacity);
         }
     }
-
+ 
     public void Display()
     {
-        // Display the elements in the array
         for (int i = 0; i < count; i++)
         {
             Console.Write(data[i] + " ");
         }
         Console.WriteLine();
     }
+ 
+    // IEnumerable Interface Implementation
+ 
+    public IEnumerator<object> GetEnumerator()
+    {
+        for (int i = 0; i < count; i++)
+        {
+            yield return data[i];
+        }
+    }
+ 
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+ 
+    // IList Interface Implementation
+ 
+    public bool IsReadOnly => false;
+ 
+    public int IndexOf(object item)
+    {
+        return Array.IndexOf(data, item, 0, count);
+    }
+ 
+    public void Insert(int index, object item)
+    {
+        EnsureCapacity();
+ 
+        if (index < count)
+        {
+            Array.Copy(data, index, data, index + 1, count - index);
+        }
+ 
+        data[index] = item;
+        count++;
+    }
+ 
+    public void RemoveAt(int index)
+    {
+        if (index >= 0 && index < count)
+        {
+            Array.Copy(data, index + 1, data, index, count - index - 1);
+            count--;
+            data[count] = null;
+        }
+        else
+        {
+            Console.WriteLine("Index out of range.");
+        }
+    }
+ 
+    public object this[int index]
+    {
+        get { return Get(index); }
+        set
+        {
+            if (index < 0 || index >= count)
+            {
+                Console.WriteLine("Index out of range.");
+            }
+            else
+            {
+                data[index] = value;
+            }
+        }
+    }
+ 
+    // ICollection Interface Implementation
+ 
+    public void AddToCollection(object item)
+    {
+        Add(item);
+    }
+ 
+    public void Clear()
+    {
+        Array.Clear(data, 0, count);
+        count = 0;
+    }
+ 
+    public bool Contains(object item)
+    {
+        return IndexOf(item) != -1;
+    }
+ 
+    public void CopyTo(object[] array, int arrayIndex)
+    {
+        Array.Copy(data, 0, array, arrayIndex, count);
+    }
+ 
+    bool ICollection<object>.Remove(object item)
+    {
+        Remove(item);
+        return true;
+    }
 }
-
-
-public class Queue<T> : IEnumerable<T>
+ 
+ 
+public class Queue<T> : IEnumerable<T>, IComparer<T> where T : IComparable<T>
 {
     private class Node
     {
@@ -160,6 +182,17 @@ public class Queue<T> : IEnumerable<T>
 
     private Node front;
     private Node rear;
+
+    private IComparer<T> comparer;
+
+    public Queue() : this(Comparer<T>.Default)
+    {
+    }
+
+    public Queue(IComparer<T> comparer)
+    {
+        this.comparer = comparer;
+    }
 
     public int Count
     {
@@ -286,108 +319,146 @@ public class Queue<T> : IEnumerable<T>
             throw new NotImplementedException();
         }
     }
+
+    // Implementation of IComparer<T>
+    public int Compare(T x, T y)
+    {
+        return x.CompareTo(y);
+    }
+
+    // Sort method for the queue using IComparer<T>
+    public void Sort()
+    {
+        if (front == null || front.Next == null)
+        {
+            // Nothing to sort for zero or one element
+            return;
+        }
+
+        Node sorted = null;
+        Node current = front;
+
+        while (current != null)
+        {
+            Node next = current.Next;
+            sorted = SortedInsert(sorted, current);
+            current = next;
+        }
+
+        front = sorted;
+    }
+
+    private Node SortedInsert(Node sorted, Node newNode)
+    {
+        if (sorted == null || Compare(newNode.Value, sorted.Value) <= 0)
+        {
+            newNode.Next = sorted;
+            return newNode;
+        }
+
+        Node current = sorted;
+        while (current.Next != null && Compare(newNode.Value, current.Next.Value) > 0)
+        {
+            current = current.Next;
+        }
+
+        newNode.Next = current.Next;
+        current.Next = newNode;
+
+        return sorted;
+    }
 }
-class ArrayListQueue
+
+ 
+ 
+class Program
 {
     static void Main()
     {
-
-        /*
-        // Example usage:
-        ArrayListGeneric<int> myArrayList = new ArrayListGeneric<int>();
-        // Console.WriteLine("Is the list empty? " + myArrayList.IsEmpty);  // Output: True
-    
-        myArrayList.Add(1);
-        myArrayList.Add(2);
-        myArrayList.Add(3);
-        myArrayList.Add(4);
-
-        Console.WriteLine("Size of the list: " + myArrayList.Size);  // Output: 4
-
-        myArrayList.Display();  // Output: 1, 2, 3, 4
-
-        myArrayList.Remove(2);
-        myArrayList.Display();  // Output: 1, 3, 4
-
-        Console.WriteLine("Element at index 1: " + myArrayList.Get(1));  // Output: 3
-        Console.WriteLine("Is the list empty? " + myArrayList.IsEmpty);  // Output: False
-
-        */
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////
-        System.Console.WriteLine();
-        System.Console.WriteLine("Non-Generic arraylist:");
-
-        //NON-GENERIC ARRAYLIST
-         // Example usage of ArrayList
+        Console.WriteLine("Example usage of ArrayList:");
+ 
         ArrayList arrayList = new ArrayList();
-
-        System.Console.WriteLine("Adding elements to array list");
-        
+ 
         // Adding elements to the ArrayList
         arrayList.Add(1);
         arrayList.Add("Hello");
         arrayList.Add(3.14);
         arrayList.Add(true);
-
-        Console.WriteLine("Elements in ArrayList:");
-        arrayList.Display();
-        Console.WriteLine("ArrayList Count: " + arrayList.Count);
-        // Console.WriteLine("Is ArrayList Empty? " + arrayList.IsEmpty);
-
-
-        // Removing an element
-        System.Console.WriteLine("\nRemoving hello from array list");
-        arrayList.Remove("Hello");
-
+ 
+        // Using IEnumerable for iteration
+        Console.WriteLine("\nIterating through the ArrayList using IEnumerable:");
+        foreach (var element in arrayList)
+        {
+            Console.Write(element + " ");
+        }
+ 
+        // Using IList for specific list operations
+        Console.WriteLine("\nInserting 'World' at index 1 using IList:");
+        arrayList.Insert(1, "World");
+ 
+        // Displaying elements after insertion
         Console.WriteLine("Updated Elements in ArrayList:");
-        arrayList.Display();
-
-        Console.WriteLine("ArrayList Count after removing an element: " + arrayList.Count);
-
-
-
-
-
-        ////////////////////////////////////////////////////////////////////////////
+        foreach (var element in arrayList)
+        {
+            Console.Write(element + " ");
+        }
+ 
+        // Removing an element at index 2
+        Console.WriteLine("\nRemoving an element at index 2 using IList:");
+        arrayList.RemoveAt(2);
+ 
+        // Displaying elements after removal
+        Console.WriteLine("Updated Elements in ArrayList:");
+        foreach (var element in arrayList)
+        {
+            Console.Write(element + " ");
+        }
+ 
+        //////////////////////////////////////////////////////////////////////////////
+ 
         // Example usage:
         Queue<int> myQueue = new Queue<int>();
-        Console.WriteLine();  // Output: True
-        System.Console.WriteLine("FAWZ QUEUE");
-
+ 
         myQueue.Enqueue(1);
         myQueue.Enqueue(2);
         myQueue.Enqueue(3);
-        myQueue.Enqueue(4);
-
-        Console.WriteLine("Elements in the queue using IEnumerator:");
+    
+        // Iterate through the elements using IEnumerator
+        Console.WriteLine("\nElements in the queue using IEnumerator:");
         IEnumerator<int> enumerator = myQueue.GetEnumerator();
         while (enumerator.MoveNext())
         {
             int element = enumerator.Current;
             Console.WriteLine(element);
         }
-
+ 
         // Alternatively, you can use foreach
         Console.WriteLine("\nElements in the queue using foreach:");
         foreach (int element in myQueue)
         {
             Console.WriteLine(element);
         }
-        
-        System.Console.WriteLine("Adding elements to queue");
-        myQueue.Display();  // Output: 1 2 3 4
-        Console.WriteLine("Size of the queue: " + myQueue.Count);  // Output: 4
 
-        System.Console.WriteLine("removing element from queue");
-        int dequeuedElement = myQueue.Dequeue();
-        Console.WriteLine("Dequeued element: " + dequeuedElement);  // Output: 1
-        Console.WriteLine("Size of the queue after dequeue: " + myQueue.Count);  // Output: 3
+        // Use the default comparer for integers
+        //Queue<int> myQueue = new Queue<int>();
 
+        myQueue.Enqueue(3);
+        myQueue.Enqueue(1);
+        myQueue.Enqueue(2);
 
-        int peekedElement = myQueue.Peek();
-        Console.WriteLine("Peeked element: " + peekedElement);  // Output: 2
+        Console.WriteLine("Elements in the queue before sorting:");
+        foreach (int element in myQueue)
+        {
+            Console.WriteLine(element);
+        }
 
-        myQueue.Display();
+        // Sort the queue
+        myQueue.Sort();
+
+        Console.WriteLine("Elements in the queue after sorting:");
+        foreach (int element in myQueue)
+        {
+            Console.WriteLine(element);
+        }
     }
 }
